@@ -1,0 +1,30 @@
+[
+    {
+        "name" : "Ordinary Nimacide",
+        "price": "225",
+        "description":" THis porduct is used for creating of vitamin C purposes",
+        "ratings": 4.5,
+        "images":[{
+
+        }],
+        "category": "Beauty/Health",
+        "seller":"Nimacide",
+        "stock": 50,
+        "numofReviews": "25",
+        "reviews": []
+    },
+    {
+        "name" : "Ordinary Zinc Nimacide",
+        "price": "700",
+        "description":" THis porduct ordinary Zinc nimacide",
+        "ratings": 4.4,
+        "images":[{
+
+        }],
+        "category": "Beauty/Health",
+        "seller":"Nimacide",
+        "stock": 10,
+        "numofReviews": "60",
+        "reviews": []
+    }
+]
