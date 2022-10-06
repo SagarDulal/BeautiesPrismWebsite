@@ -35,4 +35,4 @@ router.route('/admin/user/:id')
             .put(isAuthenticatedUser, authorizeRoles('admin'), updateUser)
             .delete(isAuthenticatedUser, authorizeRoles('admin'), deleteUser)
 
-module.exports = router;
+module.exports = router; 

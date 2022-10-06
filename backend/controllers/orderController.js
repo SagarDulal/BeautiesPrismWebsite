@@ -2,7 +2,7 @@ const Order = require('../models/order')
 const Product = require('../models/product');
 
 
-const ErroHandler = require('../utils/errorHandler')
+const ErrorHandler = require('../utils/errorHandler')
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors')
 
 // Create a new order => api/v1/order 
@@ -66,7 +66,7 @@ exports.myOrders = catchAsyncErrors ( async (req,res, next) => {
 
 
 
-// Get all Order => /api/v1/admin/orders
+// Get all Order by ADMIN => /api/v1/admin/orders
 exports.allOrders = catchAsyncErrors ( async (req,res, next) => {
     const orders = await Order.find()
 
@@ -83,3 +83,50 @@ exports.allOrders = catchAsyncErrors ( async (req,res, next) => {
     })
 
 })
+
+
+// Update / Process Order by ADMIN => /api/v1/admin/order/:id
+exports.updateOrder = catchAsyncErrors ( async (req,res, next) => {
+    const order = await Order.findById(req.params.id)
+
+    console.log(orderStatus)
+    if(order.orderStatus === "Delivered"){
+        return next(new ErrorHandler('You have already delivered this order',400))
+    }
+
+    order.orderItems.forEach(async item=>{
+        await updateStock(item.product, item.quantity)
+    })
+
+    order.orderStatus = req.body.status, 
+    order.deliveredAt = Date.now()
+
+    await order.save()
+
+    res.status(200).json({ 
+        success: true
+    })
+
+})
+
+// Delete Order => api/v1/admin/order/:id
+
+exports.deleteOrder = catchAsyncErrors ( async (req,res, next) => {
+    const order = await Order.findById(req.params.id)
+
+    if(!order){
+        return next(new ErrorHandler("No order was found with this id",404))
+    }
+    await order.remove();
+    res.status(200).json({
+        success:true 
+    })
+})
+
+async function updateStock(id, quantity){
+    const product = await Product.findById(id);
+
+    product.stock = product.stock - quantity;
+
+    await product.save({validateBeforeSave: false})
+}
