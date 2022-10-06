@@ -8,7 +8,7 @@ const {
     myOrders,
     allOrders, 
     updateOrder,
-    deleteOrder
+    deleteOrder,
 } = require('../controllers/orderController')
 
 
@@ -25,6 +25,7 @@ router.route('/admin/orders').get(isAuthenticatedUser,authorizeRoles('admin'), a
 router.route('/admin/order/:id')
             .put(isAuthenticatedUser,authorizeRoles('admin'), updateOrder)
             .delete(isAuthenticatedUser,authorizeRoles('admin'), deleteOrder);
+
 
 
 
