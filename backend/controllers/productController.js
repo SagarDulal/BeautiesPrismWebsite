@@ -130,7 +130,17 @@ await product.save({ validateBeforeSave: false });
 res.status(200).json({
     success: true
 })
-
-    
-
 })
+
+// Get product Reviews  => api/v1/Reviews
+
+
+exports.getProductReviews = catchAsyncErrors ( async (req,res, next) => {
+    const product = await Product.findById(req.query.id);
+
+    res.status(200).json({
+        success: true,
+        reviews: product.reviews
+    })
+})
+
