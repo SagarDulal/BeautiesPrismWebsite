@@ -1,7 +1,11 @@
+
+import Header from "./components/layouts/Header"
+import Footer from "./components/layouts/Footer"
 function App() {
   return (
     <div className="App">
-      <h1> Beauties Prism Website</h1>
+      <Header />
+      <Footer/>
     </div>
   );
 }
