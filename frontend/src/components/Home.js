@@ -1,9 +1,11 @@
-import React from 'react'
+import React , {Fragment} from 'react'
+
+import MetaData from "./layouts/MetaData"
 
 const Home = () => {
   return (
-    <div className ="container container-fluid">
-
+    <Fragment>
+      <MetaData title ={'Buy Best Beauty Products Online'} />
     <h1 id="products_heading">Latest Products</h1>
 
     <section id="products" className="container mt-5">
@@ -16,7 +18,7 @@ const Home = () => {
             />
             <div className="card-body d-flex flex-column">
               <h5 className="card-title">
-                <a href="">128GB Solid Storage Memory card - SanDisk Ultra</a>
+                <a href="/#">128GB Solid Storage Memory card - SanDisk Ultra</a>
               </h5>
               <div className="ratings mt-auto">
                 <div className="rating-outer">
@@ -25,14 +27,13 @@ const Home = () => {
                 <span id="no_of_reviews">(5 Reviews)</span>
               </div>
               <p className="card-text">$45.67</p>
-              <a href="#" id="view_btn" className="btn btn-block">View Details</a>
+              <a href="/#" id="view_btn" className="btn btn-block">View Details</a>
             </div>
           </div>
         </div>
       </div>
     </section>
-      
-    </div>
+    </Fragment>
   )
 }
 
